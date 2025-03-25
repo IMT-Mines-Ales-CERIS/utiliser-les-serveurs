@@ -89,10 +89,10 @@ pip install jupyterlab
 * Lancer jupyter-lab.
 
 ```bash
-jupyter-lab --ip=0.0.0.0 --port=7860 --allow-root --IdentityProvider.token=''
+jupyter-lab --ip=0.0.0.0 --port=8080 --allow-root --IdentityProvider.token=''
 ```
 
-* Accédez à JupyterLab via l'URL suivante : `http://127.0.0.1:7860/lab`.
+* Accédez à JupyterLab via l'URL suivante : `http://127.0.0.1:8080/lab`.
 
 
 ## Transferts de fichiers
