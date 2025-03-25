@@ -136,3 +136,59 @@ ssh -L 2222:localhost:2222 -F config.txt container -t 2222:22
 ```bash
 sshfs -F /home/<nom_utilisateur>/.ssh/<adresse_mail>/config.txt 127.0.0.1:/home/docker/<lien_dossier_distant> <lien_dossier_local>
 ```
+
+## Créer un bureau distant
+
+* Connectez-vous à votre conteneur.
+
+```bash
+ssh -L 5901:localhost:5901 -F config.txt container -t 5901:5901
+```
+
+* Installer un environnement graphique et un serveur VNC.
+
+```bash
+sudo apt update
+sudo apt install -y xfce4 xfce4-goodies tightvncserver
+```
+
+* Ajouter les lignes suivantes au sein du fichier `~/.vnc/xstartup`. Vous pouvez utiliser la commande `nano ~/.vnc/xstartup`.
+
+```
+#!/bin/bash
+xrdb /home/docker/.Xresources
+startxfce4 &
+```
+
+* Modifier les droits du fichier `~/.vnc/xstartup`.
+
+```bash
+chown docker:docker .vnc/xstartup
+chmod +x .vnc/xstartup
+```
+
+* Démarrer le serveur VNC. Vous allez devoir créer un mot de passe de session.
+
+```bash
+vncserver -rfbport 5901 -geometry 1920x1080
+```
+
+* Sur votre machine local, télécharger un client VNC (ex. https://github.com/TigerVNC/tigervnc/releases). Sous ubuntu, vous pouvez utiliser l'utilitaire Remmina.
+
+<div align="center">
+    <img src="images/remmina.png" alt="remmina">
+</div>
+
+<div align="center">
+    <img src="images/pwd.png" alt="pwd">
+</div>
+
+<div align="center">
+    <img src="images/bureau.png" alt="bureau">
+</div>
+
+Si vous voulez arrêter votre serveur VNC sur votre conteneur.
+
+```bash
+vncserver -kill :1
+```
