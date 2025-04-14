@@ -110,13 +110,13 @@ ssh -L 2222:localhost:2222 -F config.txt container -t 2222:22
 * Pour transférer un fichier ou un dossier de votre machine locale vers le conteneur.
 
 ```bash
-scp -r -F config.txt container <lien_fichier_local>  127.0.0.1:/home/docker/<lien_destination_distant>
+scp -r -F config.txt <lien_fichier_local>  127.0.0.1:/home/docker/<lien_destination_distant>
 ```
 
 * Pour transférer un fichier ou un dossier du conteneur vers votre machine locale :
 
 ```bash
-scp -r -F config.txt container 127.0.0.1:<lien_fichier_distant>  <lien_destination_local>
+scp -r -F config.txt 127.0.0.1:<lien_fichier_distant>  <lien_destination_local>
 ```
 
 ## Montage d'un système de fichiers distant avec `sshfs`
