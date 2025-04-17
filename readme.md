@@ -119,7 +119,7 @@ scp -r -F config.txt <lien_fichier_local>  127.0.0.1:/home/docker/<lien_destinat
 scp -r -F config.txt 127.0.0.1:<lien_fichier_distant>  <lien_destination_local>
 ```
 
-## Montage d'un système de fichiers distant avec `sshfs`
+## Montage d'un système de fichiers distant avec `sshfs` (testé avec Mac et Linux)
 
 La commande sshfs permet de monter un système de fichiers distant via SSH, offrant ainsi un accès transparent aux fichiers d'un de vos conteneurs comme s'ils étaient locaux. Cette fonctionnalité est particulièrement utile pour manipuler les fichiers d'un conteneur de calcul sans avoir à les transférer manuellement.
 
