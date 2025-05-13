@@ -8,7 +8,7 @@ La pièce-jointe reçu par mail (authentication.zip) contient une clé d'authent
 
 ## Connexion standard
 
-La commande standard (à réaliser depuis l'intérieur du dossier) pour accéder à votre container de calcul est la suivante. 
+La commande standard (à réaliser depuis l'intérieur du dossier) pour accéder à votre container de calcul est la suivante. Pour les utilisateurs Windows, préférer Powershell. 
 
 ```bash
 ssh -F config.txt container
@@ -118,6 +118,30 @@ scp -r -F config.txt <lien_fichier_local>  127.0.0.1:/home/docker/<lien_destinat
 ```bash
 scp -r -F config.txt 127.0.0.1:<lien_fichier_distant>  <lien_destination_local>
 ```
+
+## Transferts de fichiers via FileZila
+
+* Configuration de votre clé de connexion
+
+    * Édition > Paramètres
+    * Panel de gauche → section SFTP
+    * Cliquez sur le bouton « Ajouter un fichier de clefs »
+    * Sélectionnez le fichier sshKey.txt dans votre dossier prenom.nom@mines-ales.fr placé dans le dossier ~/.ssh.
+    * Validez en appuyant sur le bouton OK en bas à gauche
+
+* Connectez-vous à votre conteneur.
+
+```bash
+ssh -L 2222:localhost:2222 -F config.txt container -t 2222:22
+```
+
+* Configurez les paramètres de connexion
+
+    * Hôte : sftp://127.0.0.1
+    * Nom d'utilisateur : docker
+    * Mot de passe : le mot de passe reçu par mail
+    * Port : 2222
+
 
 ## Montage d'un système de fichiers distant avec `sshfs` (testé avec Mac et Linux)
 
