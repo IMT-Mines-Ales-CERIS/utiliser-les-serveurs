@@ -216,3 +216,42 @@ Si vous voulez arrêter votre serveur VNC sur votre conteneur.
 ```bash
 vncserver -kill :1
 ```
+
+## Installer RStudio
+
+Procédure d'installation disponible à cette adresse: https://posit.co/download/rstudio-server/.
+
+* Connectez-vous à votre conteneur.
+
+```bash
+# Le port 8787 est le port par défaut pour RStudio.
+ssh -L 8787:localhost:8787 -F config.txt container -t 8787:8787
+```
+
+* Installer R.
+
+```bash
+sudo apt-get install r-base
+```
+
+* Installer RStudio.
+
+```bash
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2026.01.1-403-amd64.deb
+sudo gdebi rstudio-server-2026.01.1-403-amd64.deb
+```
+
+* Démarrer RStudio.
+
+```bash
+sudo rstudio-server start
+```
+
+* Ouvrez votre navigateur à l'adresse: http://localhost:8787/
+
+* Connectez-vous avec l'utilisateur "docker" et son mot de passe.
+
+<div align="center">
+    <img src="images/rstudio.png" alt="rstudio">
+</div>
